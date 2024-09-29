@@ -1,14 +1,14 @@
-let price = 10;
+let price = 19.5;
 let cid = [
-    ["PENNY", 0.01],
-    ["NICKEL", 0.05],
-    ["DIME", 0.1],
-    ["QUARTER", 0.25],
-    ["ONE", 1],
-    ["FIVE", 5],
-    ["TEN", 10],
-    ["TWENTY", 20],
-    ["ONE HUNDRED", 100]
+    ["PENNY", 0.5], 
+    ["NICKEL", 0], 
+    ["DIME", 0], 
+    ["QUARTER", 0], 
+    ["ONE", 0], 
+    ["FIVE", 0], 
+    ["TEN", 0], 
+    ["TWENTY", 0], 
+    ["ONE HUNDRED", 0]
 ]
 
 
@@ -53,7 +53,7 @@ function sellProduct(){
 
     // if cash < price
     if(cash < priceReformated){
-        alert("Customer does not have enough mopney to purchase the item")
+        alert("Customer does not have enough money to purchase the item")
         return
     }   
     // if cash === price
@@ -77,7 +77,7 @@ function sellProduct(){
     // if INSUFFICIENT_CASH
     if(cash !== 0){
         console.log(cid)
-        exchangeView.innerText = "STATUS: INSUFFICIENT_CASH"
+        exchangeView.innerText = "Status: INSUFFICIENT_FUNDS"
         for(let i = 0; i < exchange.length; i++){
             for(let j = 0; j < cid.length; j++){
                 if(exchange[i][0] === cid[j][0]){
@@ -100,17 +100,28 @@ function sellProduct(){
         }
     }
     if(isEmpty){
-        exchangeView.innerText = "STATUS: CLOSED"
+        exchangeView.innerText = "Status: CLOSED"
+        for(const [k, v] of exchange){
+            let li = document.createElement("li")
+            li.innerText = `${k}: \$${v/100}`
+            exchangeView.append(li)
+        }
+    
         updateDrawerView();
         return;
     }
     // if OPEN
-    exchangeView.innerText = "STATUS: OPEN"
+    exchangeView.innerText = "Status: OPEN"
+    for(const [k, v] of exchange){
+        let li = document.createElement("li")
+        li.innerText = `${k}: \$${v/100}`
+        exchangeView.append(li)
+    }
     for(let i = 0; i < cid.length; i++)
         cid[i][1]/=100;
     updateDrawerView()
-    console.log("idk")
-     
+
+    
 
 }
 
