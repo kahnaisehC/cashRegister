@@ -109,6 +109,7 @@ function sellProduct(){
     for(let i = 0; i < cid.length; i++)
         cid[i][1]/=100;
     updateDrawerView()
+    console.log("idk")
      
 
 }
